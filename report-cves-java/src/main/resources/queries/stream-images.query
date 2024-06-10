@@ -1,0 +1,17 @@
+query StreamImages( $organization: String!, $pageSize: Int!, $page: Int)
+{
+  streamImages(context: { organization: $organization }, query: {stream: "latest-indexed", paging: {pageSize: $pageSize, page: $page}}) {
+    items {
+      digest
+      repository {
+        repoName
+      }
+      tags {
+        name
+      }
+    }
+    paging {
+      totalCount
+    }
+  }
+}

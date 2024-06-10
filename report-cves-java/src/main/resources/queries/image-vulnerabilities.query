@@ -1,0 +1,23 @@
+query ImageVulnerabilitiesByDigest ($organization: String!, $digest: String!)
+{
+  imageVulnerabilitiesByDigest(
+    context: { organization: $organization }
+    digest: $digest
+  ) {
+    digest
+    vulnerabilities {
+      purl
+      vulnerabilities {
+        sourceId
+        fixedBy
+        description
+        epss {
+          score
+        }
+        cvss {
+          severity
+        }
+      }
+    }
+  }
+}
